@@ -1,0 +1,36 @@
+
+CREATE DATABASE tp_uploadimg
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Spanish_Argentina.1252'
+    LC_CTYPE = 'Spanish_Argentina.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+\c tp_uploadimg;
+
+CREATE TABLE autores (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    nacionalidad VARCHAR(50),
+    imagen VARCHAR(255) 
+);
+
+CREATE TABLE libros (
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(200) NOT NULL,
+    anio INT,
+    id_autor INT NOT NULL REFERENCES autores(id) ON DELETE CASCADE,
+    portada VARCHAR(255) 
+);
+
+INSERT INTO autores (nombre, nacionalidad) VALUES
+('Gabriel García Márquez', 'Colombiano'),
+('J.K. Rowling', 'Británica'),
+('Julio Cortázar', 'Argentino');
+
+INSERT INTO libros (titulo, anio, id_autor) VALUES
+('Cien años de soledad', 1967, 1),
+('Harry Potter y la piedra filosofal', 1997, 2),
+('Rayuela', 1963, 3);

@@ -1,6 +1,8 @@
 import express from 'express'
 import autoresController from './controllers/autores-controller.js'
 import librosController from './controllers/libros-controller.js'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express()
 app.use(express.json())
